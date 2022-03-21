@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void selectionsort(int numero[], int n){
+void selection(int numero[], int n){
     for(int i=0;i<n;i++){
         int menor = i;
     
@@ -21,12 +21,12 @@ void selectionsort(int numero[], int n){
 }
 int main(){
     char c;
-    int numero[100];
+    int numero[1000];
     int n = 0;
     while(scanf("%d%c", &numero[n], &c)!= EOF){
         n=n+1;
     }
-    selectionsort(numero, n);
+    selection(numero, n);
     
     return 0;
 }

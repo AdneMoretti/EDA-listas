@@ -1,31 +1,18 @@
 #include <stdio.h>
 
-void selectionsort(int numero[], int n){
-    for(int i=0;i<n;i++){
-        int menor = i;
-    
-        for(int j = i+1; j<n;j++){
-            if(numero[j]< numero[menor]){
-                menor = j;
-            }}
-            if(menor!=i){
-                int tmp = numero[i];
-                numero[i] = numero[menor];
-                numero[menor] = tmp;
-    }
-}
-    for(int i=0; i<n; i++){
-        printf("%d", numero[i]);
-    }
-}
+
 int main(){
-    char c;
-    int numero[100];
-    int n = 0;
-    while(scanf("%d", &numero[n])!= EOF){
-        n=n+1;
+    int N, M, i;
+    int vetorN[1000000000];
+    int vetorM[1000000000];
+
+    scanf("%d %d", N, M);
+    for(i=0;i<N;i++){
+        scanf("%d", vetorN[i]);
     }
-    selectionsort(numero, n);
-    
+    for(i=0;i<M;i++){
+        scanf("%d", vetorM[i]);
+    }
+
     return 0;
 }

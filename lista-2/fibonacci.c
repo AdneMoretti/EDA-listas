@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 
 long long int aux[80];

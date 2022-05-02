@@ -5,42 +5,51 @@ typedef struct celula {
   int dado;
   struct celula *prox;
 } celula;
-celula *cria_pilha(){
-    celula *f = malloc(sizeof(celula));
-    f->prox = NULL;
-    return f;
+
+celula *cria_fila(){
 }
-celula *enfileira (celula *f, int x){
-    celula *novo = malloc(sizeof(celula));
-    if(novo == NULL) return NULL;
-    novo->prox = f->prox;
-    f -> prox = novo;
-    f -> dado = x;
-    f = novo;
-    return novo;
+celula *enfileira (celula *u, int x){
+    celula *nova = malloc(sizeof(celula));
+    nova->dado = x;
+    u -> prox -> prox = nova;
+    u -> prox = nova;
+    
+    nova ->prox = u;
 }
 
-void desenfileira(celula *f, int *y){
-    celula *lixo = f->prox;
-    if(lixo==NULL) return;
-    f-> prox = lixo ->prox;
+int desenfileira(celula *p, int *y){
+    celula *lixo = malloc(sizeof(celula));
+    lixo = p->prox;
     *y = lixo->dado;
+    p->prox = lixo ->prox;
     free(lixo);
+
 }
 
 int main(){
     int y, numero;
-    celula *novo = cria_pilha();
-    celula*le = novo;
+    int count = 0;
+    celula *p = malloc(sizeof(celula));
+    celula *u = malloc(sizeof(celula));
+    p->prox = u;
+    u->prox = p;
     scanf("%d", &numero);
-    for(int i=numero;i>=1;i--){
-        enfileira(novo, i);
+    int *descartadas = malloc(numero * sizeof(int));
+    for(int i=1;i<=numero;i++){
+        enfileira(u, i);
     }
-    desenfileira(novo, &y);
-    printf("%d", novo->dado);
-
-    // desenfileira(le, &y);
-    // printf("%d", y);
-
+    for(int i = numero;i>=2;i--){
+        desenfileira(p, &y);
+        descartadas[count] = y;
+        count ++;
+        desenfileira(p, &y);
+        enfileira(u, y);
+    }
+    printf("Cartas descartadas:");
+    for(int i=0; i<count; i++){
+        if(i!=count-1) printf(" %d,",descartadas[i]);
+        else printf(" %d",descartadas[i]);
+    }
+    printf("\nCarta restante: %d\n", u ->prox->dado);
     
 }

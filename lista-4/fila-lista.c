@@ -6,15 +6,15 @@ typedef struct celula {
   struct celula *prox;
 } celula;
 
-// celula *enfileira (celula *f, int x){
-//     celula *novo = malloc(sizeof(celula));
-//     if(novo == NULL) return NULL;
-//     novo->prox = f->prox;
-//     f -> prox = novo;
-//     f -> dado = x;
-//     f = novo;
-//     return novo;
-// }
+celula *enfileira (celula *f, int x){
+    celula *novo = malloc(sizeof(celula));
+    if(novo == NULL) return NULL;
+    novo->prox = f->prox;
+    f -> prox = novo;
+    f -> dado = x;
+    f = novo;
+    return novo;
+}
 int desenfileira(celula *f, int *y){
     celula *lixo = f->prox;
     if(lixo==NULL) return 0;
